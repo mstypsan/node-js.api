@@ -1,17 +1,17 @@
 exports.getEmployees = function(employees){
     
-    const allEmployeeData = [...employees.data, ...employees.included.filter(x => x.type == "employees" )];
-    const allAccountData = employees.included.filter(x => x.type == "accounts" );
+    const allEmployeeData = [...employees.data, ...employees.included.filter(x => x.type === "employees" )];
+    const allAccountData = employees.included.filter(x => x.type === "accounts" );
+    const allAccountDataMap = new Map(allAccountData.map(x => [x.id, x]));
 
     const formattedEmloyeeData = [];
-    const uniqueIds = []
+    const uniqueId = {};
 
     allEmployeeData.forEach(function(employee) {
-        const accountDataArray = allAccountData.filter(x => x.id == employee.relationships.account.data.id);
-        accountData = accountDataArray.length == 1 ? accountDataArray[0] : {} 
-        if(!uniqueIds.includes(employee.id))
-        {
-            uniqueIds.push(employee.id);
+        const accountData = allAccountDataMap.get(employee.relationships.account.data.id) ||  {};
+
+        if(!uniqueId[employee.id]) {
+            uniqueId[employee.id] = employee;
             formattedEmloyeeData.push({ employeeData: employee, accountData: accountData });
         }
     });

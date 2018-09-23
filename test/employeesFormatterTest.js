@@ -87,8 +87,8 @@ describe('getEmployees', function () {
   it('if there are 2 employee records with the same id, return only a unique record', function () {
     const employees = {
         "data": [
-            { "type": "employees", "id": "012"},
-            { "type": "employees", "id": "012"}],
+            { "type": "employees", "id": "012", "relationships":{"account":{"data":{id:"0"}}}},
+            { "type": "employees", "id": "012", "relationships":{"account":{"data":{id:"0"}}}}],
         "included":[]
     };
 

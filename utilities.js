@@ -8,10 +8,11 @@ exports.pageResults = function(array, pageNumber, pageSize){
   
   exports.searchEmployees = function(formattedEmloyeeData, input){
     const inputToLower = input.toLowerCase();
-    const searchResults = formattedEmloyeeData.filter(employee => 
-      employee.employeeData.attributes.firstName && employee.employeeData.attributes.firstName.toLowerCase().includes(inputToLower) ||
-      employee.employeeData.attributes.lastName && employee.employeeData.attributes.lastName.toLowerCase().includes(inputToLower) ||
-      employee.accountData && employee.accountData.attributes && employee.accountData.attributes.email.toLowerCase().includes(inputToLower)
+
+    const searchResults = formattedEmloyeeData.filter(({employeeData, accountData}) => 
+      employeeData.attributes.firstName && employeeData.attributes.firstName.toLowerCase().includes(inputToLower) ||
+      employeeData.attributes.lastName && employeeData.attributes.lastName.toLowerCase().includes(inputToLower) ||
+      accountData && accountData.attributes && accountData.attributes.email.toLowerCase().includes(inputToLower)
     );
   
     return searchResults;
