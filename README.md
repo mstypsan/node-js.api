@@ -13,5 +13,8 @@ You can search for manager based on an input string
 - **pageSize** _(optional)_ The page size of the results.
 
 
-#Running the application locally
+# Running the application locally
 The API is written is Node.js. One can run it locally by first installing all the missing packages with <code> npm install </code> and then running <code> npm start </code>. Tests can run by running the command <code> nmp test </code>.
+
+# Conventions
+The project is reading directly from a local JSON file. It loads and reformattes the JSON file on application start up. For Production ready code the JSON file will be stored in a database or search engine suitable for searching fast based on text. 
